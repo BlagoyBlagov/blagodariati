@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as needsListService from "../services/needsListService";
 import NeedsList from './NeedsList';
-// import styles from './styles/userList.module.css';
+import styles from './styles/userList.module.css';
 
 const Home = () => {
 
@@ -11,6 +11,7 @@ const Home = () => {
         needsListService.getAdsAndUsers()
         .then(result => {
             setNeeds(result);
+            console.log(result);
         })
         .catch(err => console.log(err));
     }, []);

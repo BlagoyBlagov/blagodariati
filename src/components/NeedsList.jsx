@@ -1,4 +1,4 @@
-// import styles from './styles/userList.module.css';
+import styles from './styles/userList.module.css';
 
 const NeedsList = ({
     needId,

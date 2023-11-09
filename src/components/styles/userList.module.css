@@ -1,0 +1,10 @@
+.heart-icon {
+    width: 53px;
+}
+.user-avatar {
+    width: 60px;
+    overflow: hidden;
+}
+.user-avatar img {
+    height: 60px;
+}
