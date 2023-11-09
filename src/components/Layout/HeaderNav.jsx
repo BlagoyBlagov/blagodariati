@@ -22,8 +22,8 @@ const HeaderNav = () => {
                         <li className="nav-item"><a className="nav-link active" href="/">Начало</a></li>
                         <li className="nav-item"><a className="nav-link" href="#">Хора в нужда</a></li>
                     </ul>
-                    <button className="btn btn-outline-dark me-2">Вход</button>
-                    <button className="btn btn-primary">Регистрация</button>
+                    <button className="btn btn btn-outline-secondary me-2">Вход</button>
+                    <button className="btn btn-yellow">Регистрация</button>
                 </div>
                 </div>
             </nav>

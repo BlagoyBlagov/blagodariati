@@ -51,3 +51,14 @@ body {
 .bg-purple {
   background-color: #6f42c1;
 }
+
+.btn-yellow {
+  background-color: #ffe083;
+  border: 1px solid #ffe083;
+}
+.btn-yellow:hover {
+  background-color: #ffda6b;
+}
+.btn-white {
+  background-color: #fff;
+}
