@@ -1,7 +1,10 @@
+import HeaderNav from "./components/Layout/HeaderNav";
+
 function App() {
+    
     return (
         <>
-            <h1>Hello.</h1>
+            <HeaderNav />
         </>
     );
 }
