@@ -5,6 +5,14 @@ body {
   font-family: 'Exo 2', sans-serif;
 }
 
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #777;
+}
 
 @media (max-width: 991.98px) {
   .offcanvas-collapse {
