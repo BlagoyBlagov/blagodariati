@@ -25,7 +25,7 @@ const NeedsList = ({
                         </div>
                         <p className="d-block pt-1 mb-0">{description}</p>
                     </div>
-                    <a href={`#${needId}`} className="btn btn-primary btn-sm">Виж повече</a>
+                    <a href={`#${needId}`} className="btn btn-yellow btn-sm">Виж повече</a>
                 </div>
             </div>
         </div>

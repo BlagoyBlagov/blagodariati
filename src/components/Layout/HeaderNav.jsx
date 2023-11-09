@@ -10,7 +10,7 @@ const HeaderNav = () => {
             <nav className="navbar navbar-expand-lg fixed-top bg-body-tertiary" aria-label="Main navigation">
                 <div className="container">
                 <a className="navbar-brand" href="/">
-                    <img src="images/blagodaria_ti_logo_small.png" alt="" />
+                    <img src="/images/blagodaria_ti_logo_small.png" alt="" />
                     Благодаря Ти
                 </a>
                 <button onClick={handleSidebarToggle} className="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">

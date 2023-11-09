@@ -19,7 +19,7 @@ const Home = () => {
     return (
         <>
             <div className="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
-                <img className={`me-3 ${styles['heart-icon']}`} src="./assets/images/icon-1.png" alt="" width="53" />
+                <img className={`me-3 ${styles['heart-icon']}`} src="/images/icon-1.png" alt="" width="53" />
                 <div className="lh-1">
                 <h1 className="h6 mb-0 text-white lh-1">Последни публикации</h1>
                 <small></small>
