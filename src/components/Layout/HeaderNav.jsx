@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const HeaderNav = () => {
 
@@ -9,21 +10,21 @@ const HeaderNav = () => {
         <header>
             <nav className="navbar navbar-expand-lg fixed-top bg-body-tertiary" aria-label="Main navigation">
                 <div className="container">
-                <a className="navbar-brand" href="/">
-                    <img src="/images/blagodaria_ti_logo_small.png" alt="" />
-                    Благодаря Ти
-                </a>
+                    <Link className="navbar-brand" to="/">
+                        <img src="/images/blagodaria_ti_logo_small.png" alt="" /> Благодаря Ти
+                    </Link>
+
                 <button onClick={handleSidebarToggle} className="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
             
                 <div className={`justify-content-end navbar-collapse offcanvas-collapse ${isSidebarOpen ? 'open' : ''}`}>
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item"><a className="nav-link active" href="/">Начало</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#">Хора в нужда</a></li>
+                        <li className="nav-item"><Link className="nav-link active" to="/">Начало</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="#">Хора в нужда</Link></li>
                     </ul>
-                    <button className="btn btn btn-outline-secondary me-2">Вход</button>
-                    <button className="btn btn-yellow">Регистрация</button>
+                    <Link className="btn btn btn-outline-secondary me-2" to="#login">Вход</Link>
+                    <Link className="btn btn-yellow" to="#register">Регистрация</Link>
                 </div>
                 </div>
             </nav>

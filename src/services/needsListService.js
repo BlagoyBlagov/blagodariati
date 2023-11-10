@@ -33,7 +33,7 @@ export const getAdsAndUsers = async () => {
         const need = needs[ad._needId];
         const userInfo = usersInfo.find(user => user.userId === ad._ownerId);
 
-        ad.needFrom = need.name;
+        ad.needFrom = need ? need.name : '';
         ad.userNames = userInfo.firstName + ' ' + userInfo.lastName;
         ad.imageUrl = userInfo.imageUrl;
 

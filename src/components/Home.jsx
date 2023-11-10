@@ -30,12 +30,10 @@ const Home = () => {
     
 
                 {needs
-                .map((need, index) => ({ ...need, index }))
-                .sort((a, b) => b.index - a.index)
                 .map(need => (
                     <NeedsList
                         key={need._id}
-                        needId={need._id}
+                        needId={need._needId}
                         needFrom={need.needFrom}
                         description={need.description}
                         userNames={need.userNames}

@@ -1,3 +1,4 @@
+import { Route, Routes, } from "react-router-dom";
 import Home from "./components/Home";
 import HeaderNav from "./components/Layout/HeaderNav";
 
@@ -6,7 +7,11 @@ function App() {
         <>
             <HeaderNav />
             <main className="container">
-                <Home />
+                
+                <Routes>
+                    <Route path="/" element={<Home />} ></Route>
+                </Routes>
+                
             </main>
         </>
     );
