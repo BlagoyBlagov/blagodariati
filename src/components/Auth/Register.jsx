@@ -1,4 +1,42 @@
+import { useState } from "react";
+
 const Register = () => {
+
+    const formInitValues = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        rePassword: '',
+    };
+
+    const [formValues, setFormValues] = useState(formInitValues);
+    const [errors, setErrors] = useState({});
+
+    const changeHandler = (e) => {
+        let value = '';
+
+        if(e.target.type === 'radio') {
+            value = e.target.checked;
+        } else {
+            value = e.target.value
+        }
+
+        setFormValues(state => ({
+            ...state,
+            [e.target.name]: value
+        }));
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        console.log(formValues);
+    }
+
+    const validator = () => {
+        console.log(`validate`);
+    }
+
     return (
             <>
             <div className="py-5 text-center">
@@ -8,63 +46,40 @@ const Register = () => {
 
             <div className="row g-5">
                 <div className="offset-md-2 col-md-7 col-lg-8">
-                    <form>
+                    <form onSubmit={submitHandler}>
                         <div className="row g-3">
-
-                           
-                                <div className="col-sm-6 form-check">
-                                    <input type="radio" className="btn-check" name="options-base" id="type1" autoComplete="off" checked />
-                                    <label className="btn w-100" htmlFor="type1">Потребител</label>
-                                </div>
-                                <div className="col-sm-6 form-check">
-                                    <input type="radio" className="btn-check" name="options-base" id="type2" autoComplete="off" />
-                                    <label className="btn w-100" htmlFor="type2">Нуждаещ се</label>
-                                </div>
                             
-
                             <div className="col-sm-6">
                                 <label htmlFor="firstName" className="form-label">Вашето име</label>
-                                <input type="text" className="form-control" id="firstName"  value="" />
+                                <input type="text" className="form-control" id="firstName" name="firstName" 
+                                value={formValues.firstName} 
+                                onChange={changeHandler} 
+                                onBlur={validator} />
                             </div>
 
                             <div className="col-sm-6">
                                 <label htmlFor="lastName" className="form-label">Фамилия</label>
-                                <input type="text" className="form-control" id="lastName" value="" />
+                                <input type="text" className="form-control" id="lastName" name="lastName" value={formValues.lastName} onChange={changeHandler} />
                             </div>
                             <div className="col-6">
                                 <label htmlFor="email" className="form-label">Имейл адрес</label>
-                                <input type="email" className="form-control" id="email" value="" />
+                                <input type="email" className="form-control" id="email" name="email" value={formValues.email} onChange={changeHandler} />
                             </div>
-
-                            <div className="col-6">
-                                <label htmlFor="phoneNumber" className="form-label">Телефон</label>
-                                <input type="text" className="form-control" id="phoneNumber" value="" />
-                            </div>
-
-                            {/* <div className="col-6">
-                                <label htmlFor="location" className="form-label">Населено място</label>
-                                <input type="text" className="form-control" id="location" value="" />
-                            </div>
-
-                            <div className="col-6">
-                                <label htmlFor="imageUrl" className="form-label">Профилна снимка</label>
-                                <input type="text" className="form-control" id="imageUrl" value="" />
-                            </div> */}
 
                             <div className="col-6">
                                 <label htmlFor="password" className="form-label">Парола</label>
-                                <input type="password" className="form-control" id="password" value="" />
+                                <input type="password" className="form-control" id="password" name="password" value={formValues.password} onChange={changeHandler} />
                             </div>
 
                             <div className="col-6">
                                 <label htmlFor="rePassword" className="form-label">Повторете паролата</label>
-                                <input type="password" className="form-control" id="rePassword" value="" />
+                                <input type="password" className="form-control" id="rePassword" name="rePassword" value={formValues.rePassword} onChange={changeHandler} />
                             </div>
                         </div>
 
                             <hr className="my-4" />
 
-                                <button className="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                                <button className="w-100 btn btn-primary btn-lg" type="submit">Регистрирай се</button>
                             </form>
                         </div>
                 </div>
