@@ -10,6 +10,7 @@ const Register = () => {
         rePassword: '',
     };
 
+
     const [formValues, setFormValues] = useState(formInitValues);
     const [errors, setErrors] = useState({});
 
@@ -30,12 +31,12 @@ const Register = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+
         console.log(formValues);
+
+        
     }
 
-    const validator = () => {
-        console.log(`validate`);
-    }
 
     return (
             <>
@@ -54,7 +55,7 @@ const Register = () => {
                                 <input type="text" className="form-control" id="firstName" name="firstName" 
                                 value={formValues.firstName} 
                                 onChange={changeHandler} 
-                                onBlur={validator} />
+                                />
                             </div>
 
                             <div className="col-sm-6">
