@@ -1,4 +1,5 @@
 import { useState } from "react";
+import * as authService from "../../services/authService";
 
 const Register = () => {
 
@@ -31,10 +32,7 @@ const Register = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-
-        console.log(formValues);
-
-        
+        authService.register(formValues);
     }
 
 

@@ -11,7 +11,7 @@ const Home = () => {
         needsListService.getAdsAndUsers()
         .then(result => {
             setNeeds(result);
-            console.log(result);
+            // console.log(result);
         })
         .catch(err => console.log(err));
     }, []);
@@ -26,24 +26,25 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="my-3 p-3 bg-body rounded shadow-sm">
-    
-
-                {needs
-                .map(need => (
-                    <NeedsList
-                        key={need._id}
-                        needId={need._needId}
-                        needFrom={need.needFrom}
-                        description={need.description}
-                        userNames={need.userNames}
-                        publishDate={need.publishDate}
-                        imageUrl={need.imageUrl}
-                        ownerId={need._ownerId}
-                    />
-                ))}
-
-            </div>
+            {/* <div className="my-3 p-3 bg-body rounded shadow-sm"> */}
+                <div className="row">
+                    {needs
+                    .map(need => (
+                        <NeedsList
+                            key={need._id}
+                            needId={need._needId}
+                            needFrom={need.needFrom}
+                            needIcon={need.needIcon}
+                            description={need.description}
+                            userNames={need.userNames}
+                            publishDate={need._createdOn}
+                            imageUrl={need.imageUrl}
+                            ownerId={need._ownerId}
+                            userId={need.userId}
+                        />
+                    ))}
+                </div>
+            {/* </div> */}
 
 
         </>

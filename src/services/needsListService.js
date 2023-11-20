@@ -1,44 +1,54 @@
 const baseUrl = 'http://localhost:3030';
 
-const getAllAds = async () => {
-    const response = await fetch(`${baseUrl}/data/ads`);
+// const getUsersInfo = async () => {
+//     const response = await fetch(`${baseUrl}/data/userData`);
+//     const result = await response.json();
+//     return result;
+// };
+
+const getAllPosts = async () => {
+    const response = await fetch(`${baseUrl}/data/posts?sortBy=${encodeURIComponent(`_createdOn desc`)}`);
     const result = await response.json();
     return Object.values(result);
 };
 
-const getUsersInfo = async () => {
-    const response = await fetch(`${baseUrl}/data/allUsers`);
-    const result = await response.json();
-    return result;
-};
-
 const getNeeds = async () => {
-    const response = await fetch(`${baseUrl}/jsonstore/needs`);
+    const response = await fetch(`${baseUrl}/data/needs`);
     const result = await response.json();
     return result;
 };
 
 export const getAdsAndUsers = async () => {
-    const [ads, needs] = await Promise.all([getAllAds(), getNeeds()]);
+    try {
+        const [posts, needs] = await Promise.all([getAllPosts(), getNeeds()]);
 
-    const user = ads.map(async (ad) => {
-        const userResponse = await fetch(`${baseUrl}/data/getUsers/${ad._ownerId}`);
-        const userData = await userResponse.json();
-        return { userId: ad._ownerId, ...userData };
-    });
+        const userPromises = posts.map(async (postData) => {
+            const userResponse = await fetch(`${baseUrl}/data/userData/?where=_ownerId${encodeURIComponent(`="${postData._ownerId}"`)}`);
+            const userData = await userResponse.json();
+            return userData[0]; 
+        });
 
-    const usersInfo = await Promise.all(user);
+        const usersInfo = await Promise.all(userPromises);
 
-    const adsWithUserInfo = ads.map((ad) => {
-        const need = needs[ad._needId];
-        const userInfo = usersInfo.find(user => user.userId === ad._ownerId);
+        const adsWithUserInfo = posts.map((postData) => {
+            const need = needs.find((need) => need._id === postData._needId);
+            const userInfo = usersInfo.find((user) => user._ownerId === postData._ownerId);
 
-        ad.needFrom = need ? need.name : '';
-        ad.userNames = userInfo.firstName + ' ' + userInfo.lastName;
-        ad.imageUrl = userInfo.imageUrl;
+            const post = {
+                ...postData,
+                needFrom: need ? need.name : '',
+                needIcon: need ? need.icon : '',
+                userId: userInfo ? userInfo._id : '',
+                userNames: userInfo ? `${userInfo.firstName} ${userInfo.lastName}` : '',
+                imageUrl: userInfo ? userInfo.imageUrl : '',
+            };
 
-        return ad;
-    });
+            return post;
+        });
 
-    return adsWithUserInfo;
+        return adsWithUserInfo;
+    } catch (error) {
+        console.error('Error in getAdsAndUsers:', error);
+        throw error;
+    }
 };

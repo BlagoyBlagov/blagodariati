@@ -57,7 +57,9 @@ a:hover {
 }
 
 .bg-purple {
-  background-color: #6f42c1;
+  /* background-color: #6f42c1; */
+  background: rgb(17,246,255);
+  background: linear-gradient(337deg, rgb(17 244 255) 0%, rgba(255,204,0,1) 42%, rgba(255,204,0,1) 100%);
 }
 
 .btn-yellow {
