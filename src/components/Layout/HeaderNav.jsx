@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../contexts/authContext';
 
 const HeaderNav = () => {
 
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const handleSidebarToggle = () => setSidebarOpen(!isSidebarOpen);
+
+    const {
+        isAuthenticated,
+        username,
+    } = useContext(AuthContext);
 
     return (
         <header>
@@ -23,8 +29,20 @@ const HeaderNav = () => {
                         <li className="nav-item"><Link className="nav-link active" to="/">Начало</Link></li>
                         <li className="nav-item"><Link className="nav-link" to="#">Хора в нужда</Link></li>
                     </ul>
-                    <Link className="btn btn btn-outline-secondary me-2" to="login">Вход</Link>
-                    <Link className="btn btn-yellow" to="register">Регистрация</Link>
+
+                    {isAuthenticated && (
+                        <>
+                        <Link to="#">{username}</Link>
+                        <Link to="/logout">Изход</Link>
+                        </>
+                    )}
+
+                    {!isAuthenticated && (
+                        <>
+                        <Link className="btn btn btn-outline-secondary me-2" to="login">Вход</Link>
+                        <Link className="btn btn-yellow" to="register">Регистрация</Link>
+                        </>
+                    )}
                 </div>
                 </div>
             </nav>

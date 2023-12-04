@@ -11,10 +11,10 @@ const CountPosts = ({
         const getCount = async () => {
           try {
             const response = await profileService.counter(ownerId);
-            console.log(response);
+            // console.log(response);
             setCount(response);
           } catch (error) {
-            console.error("Error fetching count:", error);
+            console.error(error);
           }
         };
     

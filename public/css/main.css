@@ -57,9 +57,9 @@ a:hover {
 }
 
 .bg-purple {
-  /* background-color: #6f42c1; */
-  background: rgb(17,246,255);
-  background: linear-gradient(337deg, rgb(17 244 255) 0%, rgba(255,204,0,1) 42%, rgba(255,204,0,1) 100%);
+  background: #0082e6;
+  background: -webkit-linear-gradient(left,#ff1d25 5%,#a0328c 35%,#7040a4 45%,#4359c7 55%,#0082e6 70%);
+  background: linear-gradient(to right,#ff1d25 5%,#a0328c 35%,#7040a4 45%,#4359c7 55%,#0082e6 70%);
 }
 
 .btn-yellow {

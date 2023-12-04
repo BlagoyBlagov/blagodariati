@@ -1,36 +1,20 @@
-import { useState } from "react";
-import * as authService from "../../services/authService";
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import useForm from '../../hooks/useForm';
+import AuthContext from '../../contexts/authContext';
 
+const LoginFormKeys = {
+    Email: 'email',
+    Password: 'password',
+}
 
-const Login = () => {
-    const navigate = useNavigate();
+export default function Login() {
 
-    const formInitValues = {
-        email: '',
-        password: '',
-    };
+    const { loginSubmitHandler } = useContext(AuthContext);
 
-
-    const [formValues, setFormValues] = useState(formInitValues);
-
-    const changeHandler = (e) => {
-        setFormValues(state => ({
-            ...state,
-            [e.target.name]: e.target.value
-        }));
-    }
-
-    const submitHandler = async (e) => {
-        e.preventDefault();
-
-        const response = await authService.login(formValues);
-        if (response === true) {
-            navigate('/');
-        }
-      
-        return response;
-    }
+    const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+        [LoginFormKeys.Email]: '',
+        [LoginFormKeys.Password]: '',
+    });
 
 
     return (
@@ -42,17 +26,25 @@ const Login = () => {
 
             <div className="row g-5">
                 <div className="offset-md-2 col-md-7 col-lg-8">
-                    <form onSubmit={submitHandler}>
+                    <form onSubmit={onSubmit}>
                         <div className="row g-3">
                             
                             <div className="col-6">
                                 <label htmlFor="email" className="form-label">Имейл адрес</label>
-                                <input type="email" className="form-control" id="email" name="email" value={formValues.email} onChange={changeHandler} />
+                                <input type="email" className="form-control" id="email"
+                                name={LoginFormKeys.Email}
+                                onChange={onChange}
+                                value={values[LoginFormKeys.Email]}
+                                />
                             </div>
 
                             <div className="col-6">
                                 <label htmlFor="password" className="form-label">Парола</label>
-                                <input type="password" className="form-control" id="password" name="password" value={formValues.password} onChange={changeHandler} />
+                                <input type="password" className="form-control" id="password"
+                                name={LoginFormKeys.Password}
+                                onChange={onChange}
+                                value={values[LoginFormKeys.Password]}
+                                />
                             </div>
 
                         </div>
@@ -67,5 +59,3 @@ const Login = () => {
        
     );
 }
-
-export default Login;

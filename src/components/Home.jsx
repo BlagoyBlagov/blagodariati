@@ -8,7 +8,7 @@ const Home = () => {
     const [needs, setNeeds] = useState([]);
 
     useEffect(() => {
-        needsListService.getAdsAndUsers()
+        needsListService.getPosts()
         .then(result => {
             setNeeds(result);
             // console.log(result);
@@ -26,25 +26,24 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* <div className="my-3 p-3 bg-body rounded shadow-sm"> */}
-                <div className="row">
-                    {needs
-                    .map(need => (
-                        <NeedsList
-                            key={need._id}
-                            needId={need._needId}
-                            needFrom={need.needFrom}
-                            needIcon={need.needIcon}
-                            description={need.description}
-                            userNames={need.userNames}
-                            publishDate={need._createdOn}
-                            imageUrl={need.imageUrl}
-                            ownerId={need._ownerId}
-                            userId={need.userId}
-                        />
-                    ))}
-                </div>
-            {/* </div> */}
+            <div className="row">
+                {needs
+                .map(need => (
+                    <NeedsList
+                        key={need._id}
+
+                        description={need.description}
+                        publishDate={need._createdOn}
+
+                        ownerId={need._ownerId}
+                        userNames={`${need.owner.firstName} ${need.owner.lastName}`}
+                        imageUrl={need.owner.imageUrl}
+                        location={need.owner.location}
+
+                        needId={need._needId}
+                    />
+                ))}
+            </div>
 
 
         </>
