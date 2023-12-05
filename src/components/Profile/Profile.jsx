@@ -45,7 +45,6 @@ const Profile = () => {
     const userLocation = user.location ? user.location.location : '';
     // console.log(userLocation);
 
-
     return (
         <>
             <div className="row">
