@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { createContext } from "react";
 
-import * as request from '../lib/request';
 import * as authService from '../services/authService';
 import usePersistedState from "../hooks/usePersistedState";
 
@@ -15,10 +14,16 @@ export const AuthProvider = ({
     const [auth, setAuth] = usePersistedState('auth', {});
 
     const loginSubmitHandler = async (values) => {
-        const result = await authService.login(values);
-        setAuth(result);
-        localStorage.setItem('accessToken', result.accessToken);
-        navigate('/');
+        
+        try {
+            const result = await authService.login(values);
+            setAuth(result);
+            localStorage.setItem('accessToken', result.accessToken);
+            navigate('/');
+        } catch (error) {
+            console.log(error);
+        }
+
     };
 
     const registerSubmitHandler = async (values) => {
@@ -52,7 +57,7 @@ export const AuthProvider = ({
         registerSubmitHandler,
         logoutHandler,
         username: auth.firstName + ' ' + auth.lastName || auth.email,
-        avatar: auth.imageUrl,
+        avatar: auth.imageUrl || '/images/User-avatar.png',
         userType: auth.userType,
         location: auth.location,
         email: auth.email,

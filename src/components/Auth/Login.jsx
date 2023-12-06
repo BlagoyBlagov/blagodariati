@@ -16,7 +16,6 @@ export default function Login() {
         [LoginFormKeys.Password]: '',
     });
 
-
     return (
             <>
             <div className="py-5 text-center">

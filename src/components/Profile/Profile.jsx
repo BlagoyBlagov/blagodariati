@@ -51,7 +51,7 @@ const Profile = () => {
                 <div className="col-md-12">
                     <div className={styles["user-profile"]}>
                         <div className={styles["user-avatar"]}>
-                            <img src={user.imageUrl} alt="" />
+                            <img src={user?.imageUrl || '/images/User-avatar.png'} alt="" />
                         </div>
                         <div className={styles["user-info"]}>
                             <small className='text-success'>потребител</small>

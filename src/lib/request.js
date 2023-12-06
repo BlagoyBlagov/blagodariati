@@ -1,4 +1,4 @@
-const buildOptions = (data, tokenNeeded) => {
+const buildOptions = (data) => {
     const options = {};
 
     if (data) {
@@ -20,9 +20,9 @@ const buildOptions = (data, tokenNeeded) => {
     return options;
 };
 
-const request = async (method, url, data, tokenNeeded = true) => {
+const request = async (method, url, data) => {
     const response = await fetch(url, {
-        ...buildOptions(data, tokenNeeded),
+        ...buildOptions(data),
         method,
     });
 

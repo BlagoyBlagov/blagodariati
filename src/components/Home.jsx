@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import * as needsListService from "../services/needsListService";
 import NeedsList from './NeedsList';
-import styles from './styles/userList.module.css';
+import styles from './styles/posts.module.css';
 
 const Home = () => {
 
     const [needs, setNeeds] = useState([]);
 
     useEffect(() => {
-        needsListService.getPosts()
+        needsListService.getAll()
         .then(result => {
             setNeeds(result);
             // console.log(result);
@@ -31,6 +31,7 @@ const Home = () => {
                 .map(need => (
                     <NeedsList
                         key={need._id}
+                        _id={need._id}
 
                         description={need.description}
                         publishDate={need._createdOn}

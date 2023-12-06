@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import styles from './styles/userList.module.css';
+import styles from './styles/posts.module.css';
 import { formatTimestamp } from '../utils/formatTimestamp';
 import { needs } from '../staticDb/needs';
 import { truncateText } from '../utils/truncateText';
 
 const NeedsList = ({
+    _id,
     description,
     publishDate,
     userNames,
@@ -14,7 +15,7 @@ const NeedsList = ({
     needId,
 }) => {
 
-    const date = new Date(publishDate);
+    const userImageUrl = imageUrl ? imageUrl : '/images/User-avatar.png';
 
     return (
 
@@ -24,12 +25,12 @@ const NeedsList = ({
                     <div className="d-flex justify-content-between">
                         <div className="d-flex flex-row align-items-center">
                             <div className={styles['icon']}>
-                                <Link to={`/profile/${ownerId}`}><img src={imageUrl} alt={userNames} /></Link>
+                                <Link to={`/profile/${ownerId}`}><img src={userImageUrl} alt={userNames} /></Link>
                             </div>
                             <div className={`ms-2 ${styles['c-details']}`}>
                                 <Link to={`/profile/${ownerId}`}><h6 className="mb-0">{userNames}</h6></Link>
-                                <span>{location}</span>
-                                {/* <span>{formatTimestamp(date)}</span> */}
+                                {/* <span>{location}</span> */}
+                                <span>{formatTimestamp(publishDate)}</span>
                             </div>
                         </div>
                         <div className={styles['badge']}> <span>активен</span> </div>
@@ -39,7 +40,7 @@ const NeedsList = ({
                     </div>
                     <div className="mt-3">
                         <div className="mt-3">
-                            <Link to="#" className="btn btn-primary btn-sm">Виж повече</Link>
+                            <Link to={`/details/${_id}`} className="btn btn-primary btn-sm">Виж повече</Link>
                             {/* <span className={styles['text1']}>
                                     <span className={styles['text2']}>Нужда от </span>
                                     <Link to={`/needs/${needId}`}>{needs[needId].name}</Link>

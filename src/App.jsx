@@ -2,13 +2,21 @@ import { Route, Routes, } from "react-router-dom";
 
 import { AuthProvider } from './contexts/authContext';
 
-import Home from "./components/Home";
 import HeaderNav from "./components/Layout/HeaderNav";
 import Footer from "./components/Layout/Footer";
+
+import Home from "./components/Home";
+
+import Profile from "./components/Profile/Profile";
+
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
-import Profile from "./components/Profile/Profile";
 import Logout from "./components/Auth/Logout";
+
+import CreatePost from "./components/Posts/CreatePost";
+import Details from "./components/Posts/Details";
+import EditPost from "./components/Posts/EditPost";
+
 
 function App() {
 
@@ -26,6 +34,10 @@ function App() {
                         <Route path="/logout" element={<Logout />} />
 
                         <Route path="/profile/:userId" element={<Profile />} ></Route>
+
+                        <Route path="/create" element={<CreatePost />} ></Route>
+                        <Route path="/details/:postId" element={<Details />} ></Route>
+                        <Route path="/details/:postId/edit" element={<EditPost />} ></Route>
                     </Routes>
 
                 </main>

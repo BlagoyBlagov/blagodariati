@@ -26,7 +26,7 @@ const LocationSearch = () => {
         lng: place.geometry.location.lng(),
       };
       localStorage.setItem('locationData', JSON.stringify(locationData));
-      console.log(locationData);
+      // console.log(locationData);
     });
   };
 
