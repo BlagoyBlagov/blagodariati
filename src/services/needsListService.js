@@ -9,13 +9,22 @@ export const getAll = async () => {
     return result;
 }
 
+export const getLatest = async () => {
+    const query = new URLSearchParams({
+        load: `owner=_ownerId:users`,
+        offset: 0,
+        pageSize: 10,
+    });
+    const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc&${query}`);
+    return result;
+}
+
 export const getAllByUser = async (userId) => {
     const query = new URLSearchParams({
         where: `_ownerId="${userId}"`,
         load: `owner=_ownerId:users`,
     });
     const result = await request.get(`${baseUrl}?${query}`);
-    // console.log(`${baseUrl}?${query}`);
     return result;
 }
 

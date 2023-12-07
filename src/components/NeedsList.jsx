@@ -23,7 +23,7 @@ const NeedsList = ({
             <div className="col-md-3 mb-3 d-flex align-items-stretch">
                 <div className={`p-3 mb-2 card ${styles['card']}`} style={{ backgroundImage: `url(${needs[needId].icon})` }}>
                     <div className="d-flex justify-content-between">
-                        <div className="d-flex flex-row align-items-center">
+                        <div className="d-flex flex-row align-items-center w-90">
                             <div className={styles['icon']}>
                                 <Link to={`/profile/${ownerId}`}><img src={userImageUrl} alt={userNames} /></Link>
                             </div>
@@ -33,7 +33,7 @@ const NeedsList = ({
                                 <span>{formatTimestamp(publishDate)}</span>
                             </div>
                         </div>
-                        <div className={styles['badge']}> <span>активен</span> </div>
+                        <div className={styles['badge']}> <span>{needs[needId].name}</span> </div>
                     </div>
                     <div className="mt-3">
                         <p>{truncateText(description)}</p>

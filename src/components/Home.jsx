@@ -8,7 +8,7 @@ const Home = () => {
     const [needs, setNeeds] = useState([]);
 
     useEffect(() => {
-        needsListService.getAll()
+        needsListService.getLatest()
         .then(result => {
             setNeeds(result);
             // console.log(result);

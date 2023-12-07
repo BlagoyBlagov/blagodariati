@@ -73,3 +73,7 @@ a:hover {
 .btn-white {
   background-color: #fff;
 }
+
+.w-90 {
+  width: 90%;
+}
