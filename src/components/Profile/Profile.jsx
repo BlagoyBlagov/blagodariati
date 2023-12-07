@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from '../styles/profile.module.css';
 import CountPosts from './CountPosts';
+import * as postService from '../../services/needsListService';
+import ProfilePostCard from './ProfilePostCard';
 
 const baseUrl = 'http://localhost:3030/data/userData';
 
@@ -10,6 +12,7 @@ const Profile = () => {
     const navigate = useNavigate();
 
     const [user, setUser] = useState({});
+    const [posts, setPosts] = useState([]);
 
     const query = new URLSearchParams({
         where: `_ownerId="${userId}"`,
@@ -39,7 +42,13 @@ const Profile = () => {
             .catch((err) => {
                 navigate('/');
             });
+
+        postService.getAllByUser(userId)
+        .then(setPosts);
+
     }, [userId]);
+
+    console.log(posts);
 
 
     const userLocation = user.location ? user.location.location : '';
@@ -64,6 +73,21 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="row mt-3">
+                {posts
+                .map(post => (
+                    <ProfilePostCard
+                        key={post._id}
+                        _id={post._id}
+
+                        description={post.description}
+                        publishDate={post._createdOn}
+
+                        needId={post._needId}
+                    />
+                ))}
             </div>
         </>
     );

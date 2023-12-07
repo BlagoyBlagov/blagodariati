@@ -1,12 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import * as postService from '../../services/needsListService';
 import { needs } from '../../staticDb/needs';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import AuthContext from '../../contexts/authContext';
 
 const createPost = () => {
 
     const navigate = useNavigate();
 
+    const { isAuthenticated } = useContext(AuthContext);
+    
     const formInitValues = {
         _needId: '',
         description: '',
@@ -25,15 +28,25 @@ const createPost = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
+        if(!formValues._needId || !formValues.description) {
+            console.log('Попълнете всички полета');
+            return;
+        }
+
         try {
-            const result = await postService.createPost(formValues);
-            console.log(result);
+            await postService.createPost(formValues);
             setFormValues(formInitValues)
             navigate('/');
         } catch(error) {
             console.log(error);
         }
     }
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/');
+        }
+    }, [isAuthenticated, navigate]);
 
     return (
         <>

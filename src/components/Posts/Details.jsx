@@ -16,7 +16,7 @@ const Details = () => {
 
     const { postId } = useParams();
     const navigate = useNavigate();
-    const { userId } = useContext(AuthContext);
+    const { userId, isAuthenticated } = useContext(AuthContext);
 
     const [post, setPost] = useState({});
 
@@ -37,15 +37,9 @@ const Details = () => {
     const userNames = post.owner ? post.owner.firstName + ' ' +post.owner.lastName : '';
 
     const deleteButtonClickHandler = async () => {
-        const hasConfirmed = confirm(`Сигурен ли сте?`);
-
-        if (hasConfirmed) {
-            await postService.deletePost(postId);
-            navigate('/');
-        }
+        await postService.deletePost(postId);
+        navigate('/');
     }
-    
-  
 
     return (
         <>
@@ -63,19 +57,50 @@ const Details = () => {
                                     <span>{formatTimestamp(post._createdOn)}</span>
                                 </div>
                             </div>
-                            <div className={styles['badge']}> <span>активен</span> </div>
+                            <div className={styles['badge']}> <span>{needs[post._needId]?.name || ''}</span> </div>
                         </div>
                         <div className="mt-3">
-                            <p>{needs[post._needId]?.name || ''}</p>
                             <p>{post.description}</p>
                         </div>
 
 
                         {userId === post._ownerId && (
+                            <>
+                                <div className="mt-3">
+                                    <button className="btn btn-sm btn-secondary me-2">Харесай</button>
+                                    <Link to={`/details/${post._id}/edit`} className="btn btn-sm btn-primary me-2">Редактирай</Link> 
+                                    <button type="button" className="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deletePostModal">Изтрий</button>
+                                </div>
+
+                                <div className="modal fade" id="deletePostModal" tabIndex={-1} aria-labelledby="deletePostModal" aria-hidden="true">
+                                    <div className="modal-dialog modal-dialog-centered">
+                                        <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h1 className="modal-title fs-5" id="deletePostModal">Изтриване</h1>
+                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                                        </div>
+                                        <div className="modal-body">Сигурни ли сте че искате да изтриете публикацията?</div>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Откажи</button>
+                                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={deleteButtonClickHandler}>Изтриване</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </>
+                        )}
+
+                        {isAuthenticated && (
+                            <>
                             <div className="mt-3">
-                                <Link to={`/details/${post._id}/edit`} className="btn btn-sm btn-primary me-2">Редактирай</Link> 
-                                <button className="btn btn-sm btn-danger" onClick={deleteButtonClickHandler}>Изтрий</button>
+                                <label htmlFor="description" className="form-label">Коментирай</label>
+                                <textarea className="form-control" 
+                                rows="3" 
+                                id="comment"
+                                name="comment"></textarea>
                             </div>
+                            </>
                         )}
                     </div>
                 </div>

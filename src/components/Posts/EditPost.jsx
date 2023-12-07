@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { needs } from '../../staticDb/needs';
 
 import * as postService from '../../services/needsListService';
+import AuthContext from '../../contexts/authContext';
 
 const editPost = () => {
 
     const navigate = useNavigate();
     const { postId } = useParams();
+
+    const { userId, isAuthenticated } = useContext(AuthContext);
     
     const [post, setPost] = useState({
         _needId: '',
@@ -16,18 +19,35 @@ const editPost = () => {
 
     useEffect(() => {
         postService.getOne(postId)
-            .then(setPost);
-    }, [postId]);
+        .then((post) => {
+            if (userId !== post._ownerId) {
+              navigate('/');
+            } else {
+              setPost(post);
+            }
+          }).catch((error) => {
+            console.log(error);
+            navigate('/');
+          });
+    }, [postId, userId, navigate]);
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        console.log(post);
+
+        try {
+            await postService.updatePost(postId, { description: post.description, _needId: post._needId });
+            navigate(`/details/${postId}`);
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     const onChange = (e) => {
-        setPost(state => ({
+        const { name, value } = e.target;
+        setPost((state) => ({
             ...state,
-            [e.target.name]: e.target.value
+            [name]: value,
         }));
     };
 
@@ -45,11 +65,11 @@ const editPost = () => {
                         <div className="row g-3">
 
                             <div className="col-12">
-                                <select className="form-select" name='_needId' onChange={onChange}>
-                                    <option value="">--- Ибзерете категория ---</option>
+                                <select className="form-select" name="_needId" onChange={onChange} value={post._needId}>
+                                    <option value="">--- Изберете категория ---</option>
                                     {Object.values(needs).map((need) => (
-                                        <option key={need._id} value={need._id} selected={post._needId === need._id ? 'selected': ''}>
-                                        {need.name}
+                                        <option key={need._id} value={need._id}>
+                                            {need.name}
                                         </option>
                                     ))}
                                 </select>
