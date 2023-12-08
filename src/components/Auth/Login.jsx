@@ -26,7 +26,6 @@ export default function Login() {
             <>
             <div className="py-5 text-center">
                 <h2>Вход</h2>
-                <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius magnam exercitationem incidunt eos dolore? Molestias recusandae, expedita quos quod soluta sit qui amet optio reiciendis vitae accusamus delectus eaque iure!</p>
             </div>
 
             <div className="row g-5">

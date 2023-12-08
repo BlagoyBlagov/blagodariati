@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
+import Autocomplete from "react-google-autocomplete";
 
 import AuthContext from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
-
-import LocationSearch from "../locationSearch";
 
 const RegisterFormKeys = {
     UserType: 'userType',
@@ -35,12 +34,19 @@ const Register = () => {
         [RegisterFormKeys.ConfirmPassword]: '',
     });
 
+    const onPlaceSelected = (place) => {
+        const locationData = {
+            location: place.formatted_address,
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+        };
+        localStorage.setItem('locationData', JSON.stringify(locationData));
+    }
 
     return (
             <>
             <div className="py-5 text-center">
                 <h2>Регистрация</h2>
-                <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius magnam exercitationem incidunt eos dolore? Molestias recusandae, expedita quos quod soluta sit qui amet optio reiciendis vitae accusamus delectus eaque iure!</p>
             </div>
 
             <div className="row g-5">
@@ -62,7 +68,7 @@ const Register = () => {
                                     <input className="form-check-input" type="radio" name={RegisterFormKeys.UserType} id="user_type_2" value="2" 
                                     onChange={onChange} 
                                     />
-                                    <label className="form-check-label" htmlFor="user_type_2">Нуждаещ се</label>
+                                    <label className="form-check-label" htmlFor="user_type_2">Човек в нужда</label>
                                 </div>
                             </div>
                             
@@ -86,7 +92,11 @@ const Register = () => {
 
                             <div className="col-12">
                                 <label htmlFor="location" className="form-label">Местоположение</label>
-                                <LocationSearch />
+                                <Autocomplete
+                                    apiKey="AIzaSyBmoVphbRmwLUh-77d1v_G9Wur2MU7YTBQ"
+                                    onPlaceSelected={onPlaceSelected}
+                                    className="form-control"
+                                />
                             </div>
 
                             <div className="col-6">
