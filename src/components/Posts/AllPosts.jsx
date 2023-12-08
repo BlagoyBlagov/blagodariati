@@ -17,31 +17,32 @@ const AllPosts = () => {
         category_id: '',
     };
     const [searchValues, setSearchValues] = useState(searchInitValues);
-    const [searchParams, setSearchParams] = useState({});
+    // const [searchParams, setSearchParams] = useState({});
 
-    const { search, category_id } = searchValues;
+    const { category_id } = searchValues;
 
     useEffect(() => {
-        needsListService.getAll('', { search, category_id })
+        needsListService.getAll('', { category_id })
         .then(result => {
             setPosts(result);
         })
         .catch(err => console.log(err));
-    }, [searchParams]);
+    }, [searchValues]);
 
-    const searchHandler = (e) => {
-        e.preventDefault();
+    // отпада за сега
+    // const searchHandler = (e) => {
+    //     e.preventDefault();
 
-        setSearchParams({
-            description: searchValues.search,
-            category_id: searchValues.category_id
-        })
+    //     setSearchParams({
+    //         description: searchValues.search,
+    //         category_id: searchValues.category_id
+    //     })
 
-        const queryParams = {};
-        if (searchValues.search) queryParams.search = searchValues.search;
-        if (searchValues.category_id) queryParams.category_id = searchValues.category_id;
-        navigate(`/all?${new URLSearchParams(queryParams)}`);
-    };
+    //     const queryParams = {};
+    //     if (searchValues.search) queryParams.search = searchValues.search;
+    //     if (searchValues.category_id) queryParams.category_id = searchValues.category_id;
+    //     navigate(`/all?${new URLSearchParams(queryParams)}`);
+    // };
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -62,11 +63,10 @@ const AllPosts = () => {
                 </div>
             </div>
 
-            {posts.length > 0 && (
-            <form className={searchBoxStyles['search-box']} onSubmit={searchHandler}>
+            <form className={searchBoxStyles['search-box']}>
                 <div className="row g-3">
-                    <div className="col-md-6">
-                        <input type="text" className="form-control" id="search" name="search" value={searchValues.search} placeholder="Търсене..." onChange={onChange} />
+                    <div className={`col-auto ${postsStyles['filter-text']}`}>
+                        Филтрирай
                     </div>
                     <div className="col-md-4">
                         <select className="form-select" aria-label="Категория" name="category_id" value={searchValues.category_id} onChange={onChange}>
@@ -78,12 +78,8 @@ const AllPosts = () => {
                             ))}
                         </select>
                     </div>
-                    <div className="col-md-2">
-                        <button type="submit" className="btn btn-primary w-100">Търси</button>
-                    </div>
                 </div>
             </form>
-            )}
 
             <div className="row">
                 {posts

@@ -29,7 +29,6 @@ const HeaderNav = () => {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item"><Link className="nav-link active" to="/">Начало</Link></li>
                         <li className="nav-item"><Link className="nav-link" to="/all">Всички публикации</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="#">Хора в нужда</Link></li>
                         {isAuthenticated && (<li className="nav-item"><Link className="nav-link" to="/create">Публиквай</Link></li>)}
                     </ul>
 

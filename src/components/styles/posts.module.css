@@ -54,3 +54,9 @@
 .text2 {
     color: #a5aec0
 }
+
+.filter-text {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

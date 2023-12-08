@@ -8,16 +8,10 @@ export const getAll = async (limit, searchData) => {
         ...(limit ? { offset: 0, pageSize: limit } : {}),
     });
 
+                    
     let buildSearchQuery = '';
-    if(searchData && searchData.search || searchData && searchData.category_id) {
-        buildSearchQuery = '&where=';
-        if(searchData.search && searchData.category_id) {
-            buildSearchQuery += `description%20LIKE%20"${searchData.search}"%20AND%20_needId%20LIKE%20"${searchData.category_id}"`;
-        } else if(searchData.search) {
-            buildSearchQuery += `description%20LIKE%20"${searchData.search}"`;
-        } else if(searchData.category_id) {
-            buildSearchQuery += `_needId%20LIKE%20"${searchData.category_id}"`;
-        }
+    if(searchData && searchData.category_id) {
+        buildSearchQuery += `&where=_needId%20LIKE%20"${searchData.category_id}"`;
     }
     
     // const search = `where=_needId%20LIKE%20"2ac967df-0941-4ff9-87c7-a58bd5d352c0"`;

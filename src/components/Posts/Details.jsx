@@ -98,7 +98,7 @@ const Details = () => {
                             </>
                         )}
 
-                        {isAuthenticated && (
+                        {/* {isAuthenticated && (
                             <>
                             <div className="mt-3">
                                 <label htmlFor="description" className="form-label">Коментирай</label>
@@ -108,7 +108,7 @@ const Details = () => {
                                 name="comment"></textarea>
                             </div>
                             </>
-                        )}
+                        )} */}
                     </div>
                 </div>
             </div>
