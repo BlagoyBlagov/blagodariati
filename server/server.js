@@ -1328,7 +1328,18 @@
                 location: "{\"location\":\"Blagoevgrad, Bulgaria\",\"lat\":42.0208569,\"lng\":23.0943385}",
                 userType: '1',
     			hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
-    		}
+    		},
+            "fda92bf4-061d-4c13-9ee3-da9cc2bfcdc2" : {
+                userType: "2",
+                firstName: "Иван",
+                lastName: "Петков",
+                email: "ivan@abv.bg",
+                phoneNumber: "0876 988 899",
+                location: "{\"location\":\"Sofia, Bulgaria\",\"lat\":42.6977082,\"lng\":23.3218675}",
+                _createdOn: 1702025841634,
+                _id: "fda92bf4-061d-4c13-9ee3-da9cc2bfcdc2",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
+            }
     	},
     	sessions: {
     	}
@@ -1339,6 +1350,11 @@
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 _createdOn: 1700074146063,
                 _id: "5d3b9f23-4a58-4c3a-9d0e-13b3d483b1a2"
+            },
+            "6d0afb1d-0b2f-4aa6-9fae-1dde2f4a7cde": {
+                _ownerId: "fda92bf4-061d-4c13-9ee3-da9cc2bfcdc2",
+                _createdOn: 1702025841649,
+                _id: "6d0afb1d-0b2f-4aa6-9fae-1dde2f4a7cde"
             }
         },
         posts : {
@@ -1355,7 +1371,45 @@
                 _needId: "163dd37d-bfc5-4723-aa3a-2ea6ec24fee1",
                 _createdOn: 1700419385281,
                 _id: "9f1cd991-fc20-41d5-bc61-4e794e428894"
+            },
+            "a41ea5ae-a16d-4166-acf7-f7756c009610": {
+                _ownerId: "fda92bf4-061d-4c13-9ee3-da9cc2bfcdc2",
+                _needId: "53cd7529-cc54-4f31-bf52-816b639cad31",
+                description: "Стандартният отрязък от Lorem Ipsum, използван от 1500 г. насам, е поместен по-долу за тези, които се интересуват. Секции 1.10.32 и 1.10.33 от \"de Finibus Bonorum et Malorum\" на Цицерон също са поместени в оригиналния им формат, заедно с превода им на английски език, направен от H. Rackham през 1914г.",
+                _createdOn: 1702026096778,
+                _id: "a41ea5ae-a16d-4166-acf7-f7756c009610"
+            },
+            "2d25c39b-6714-4531-8a75-b98a17a78ae9": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                _needId: "c41cc33e-84b5-4add-abf2-1ad98f331eba",
+                description: "Противно на всеобщото вярване, Lorem Ipsum не е просто случаен текст. Неговите корени са в класическата Латинска литература от 45г.пр.Хр., което прави преди повече от 2000 години. Richard McClintock, професор по Латински от колежа Hampden-Sydney College във Вирджиния, изучавайки една от най-неясните латински думи \"consectetur\" в един от пасажите на Lorem Ipsum, и търсейки цитати на думата в класическата литература, открива точния източник. Lorem Ipsum е намерен в секции 1.10.32 и 1.10.33 от \"de Finibus Bonorum et Malorum\"(Крайностите на Доброто и Злото) от Цицерон, написан през 45г.пр.Хр. Тази книга е трактат по теория на етиката, много популярна през Ренесанса. Първият ред на Lorem Ipsum идва от ред, намерен в секция 1.10.32.",
+                _createdOn: 1702026183907,
+                _id: "2d25c39b-6714-4531-8a75-b98a17a78ae9"
+            },
+            "aa3710d9-42f1-417a-b4e5-c03c25e71a45": {
+                _ownerId: "fda92bf4-061d-4c13-9ee3-da9cc2bfcdc2",
+                _needId: "53cd7529-cc54-4f31-bf52-816b639cad31",
+                description: "Lorem Ipsum е елементарен примерен текст, използван в печатарската и типографската индустрия. Lorem Ipsum е индустриален стандарт от около 1500 година, когато неизвестен печатар взема няколко печатарски букви и ги разбърква, за да напечата с тях книга с примерни шрифтове.\nТози начин не само е оцелял повече от 5 века, но е навлязъл и в публикуването на електронни издания като е запазен почти без промяна.\nПопуляризиран е през 60те години на 20ти век със издаването на Letraset листи, съдържащи Lorem Ipsum пасажи, популярен е и в наши дни във софтуер за печатни издания като Aldus PageMaker, който включва различни версии на Lorem Ipsum.",
+                _createdOn: 1702026285910,
+                _id: "aa3710d9-42f1-417a-b4e5-c03c25e71a45"
+            },
+            "a7c2332f-848d-4860-9f0d-4fcd46591895": {
+                _ownerId: "fda92bf4-061d-4c13-9ee3-da9cc2bfcdc2",
+                _needId: "2ac967df-0941-4ff9-87c7-a58bd5d352c0",
+                description: "Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му. Свойството на Lorem Ipsum е, че до голяма степен има нормално разпределение на буквите и се чете по-лесно, за разлика от нормален текст на английски език като \"Това е съдържание, това е съдържание\". \n\nМного системи за публикуване и редактори на Уеб страници използват Lorem Ipsum като примерен текстов модел \"по подразбиране\", поради което при търсене на фразата \"lorem ipsum\" в Интернет ще бъдат открити много сайтове в процес на разработка. Някой от тези сайтове биват променяни с времето, а други по случайност или нарочно(за забавление и пр.) биват оставяни в този си незавършен вид.",
+                _createdOn: 1702026307479,
+                _id: "a7c2332f-848d-4860-9f0d-4fcd46591895"
+            },
+            "bd04955f-bd28-49c9-8dc7-910c6213bf26": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                _needId: "a545ef7c-8f0b-4cef-9a39-acabc9db1f6b",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                _createdOn: 1702026389460,
+                _id: "bd04955f-bd28-49c9-8dc7-910c6213bf26"
             }
+        },
+        likes : {
+
         }
     };
     var rules$1 = {
