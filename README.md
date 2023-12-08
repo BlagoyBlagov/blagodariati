@@ -1,33 +1,34 @@
-# Проект "Благодаря Ти"
+# Project "Благодаря Ти"
 
-## Структура на проекта
+## Project Structure
 
-- Проектът изисква, че папката "server" трябва да бъде разположена извън папката на проекта.
-- Използва се [https://github.com/softuni-practice-server/softuni-practice-server]
+- The project requires the "server" folder to be located outside the project folder.
+- Utilizes [https://github.com/softuni-practice-server/softuni-practice-server]
 
-## Навигация
+## Navigation
 
-### Начална страница
-- Показва последните 4 публикации.
+### Home Page
+- Displays the latest 4 publications.
 
-### Всички публикации
-- Показва всички публикации.
-- Възможност за филтриране по категория.
+### All Publications
+- Shows all publications.
+- Possibility to filter by category.
 
-### Достъп
-- Гостите имат достъп само до:
-  - Началната страница
-  - Всички публикации
-  - Вход/Регистрация
+### Access
+- Guests have access only to:
+  - Home Page
+  - All Publications
+  - Login/Registration
 
-- Регистрираните потребители имат достъп до всичко, което могат да видят гостите, плюс могат да харесват публикации.
+- Registered users have access to everything guests can see, plus they can like publications.
 
-### Управление на публикации
-- Собствениците на публикации имат възможност да ги изтриват и редактират.
+### Publication Management
+- Owners of publications have the ability to delete and edit them.
 
-### Профил на потребител
-- Информация за потребителя.
-- Всички публикации, качени от потребителя, са видими на страницата с профила.
+### User Profile
+- Information about the user.
+- All publications uploaded by the user are visible on the profile page.
+
 
 
 
