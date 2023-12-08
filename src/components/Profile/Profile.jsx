@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from '../styles/profile.module.css';
 import CountPosts from './CountPosts';
+import * as profileService from "../../services/profileService";
 import * as postService from '../../services/needsListService';
 import ProfilePostCard from './ProfilePostCard';
 
@@ -18,7 +19,7 @@ const Profile = () => {
         where: `_ownerId="${userId}"`,
         load: `data=_ownerId:users`,
     });
-
+ 
     // console.log(`${baseUrl}?${query}`);
 
     useEffect(() => {
@@ -42,6 +43,15 @@ const Profile = () => {
             .catch((err) => {
                 navigate('/');
             });
+
+        // profileService.getUserById(userId)
+        // .then(result => {
+        //     const userData = {
+        //         ...result.data,
+        //         location: JSON.parse(result.data.location)
+        //     }
+        //     setUser(userData);
+        // });
 
         postService.getAllByUser(userId)
         .then(setPosts);
