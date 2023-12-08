@@ -20,6 +20,7 @@
   - All Publications
   - Login/Registration
 
+- Google place autocomplete to record the location
 - Registered users have access to everything guests can see, plus they can like publications.
 
 ### Publication Management
