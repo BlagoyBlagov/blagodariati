@@ -9,8 +9,9 @@ const editPost = () => {
 
     const navigate = useNavigate();
     const { postId } = useParams();
-
+    
     const { userId, isAuthenticated } = useContext(AuthContext);
+    const [error, setError] = useState(null);
     
     const [post, setPost] = useState({
         _needId: '',
@@ -35,10 +36,16 @@ const editPost = () => {
         e.preventDefault();
 
         try {
+
+            if(!post._needId || !post.description) {
+                throw new Error('Попълнете всички полета');
+            }
+
             await postService.updatePost(postId, { description: post.description, _needId: post._needId });
             navigate(`/details/${postId}`);
         } catch(error) {
-            console.log(error);
+            // console.log(error);
+            setError(error.message);
         }
         
     }
@@ -61,6 +68,7 @@ const editPost = () => {
 
             <div className="row g-5">
                 <div className="offset-md-2 col-md-7 col-lg-8">
+                    {error && <div className="alert alert-danger alert-dismissible fade show" role="alert">{error}</div>}
                     <form onSubmit={onSubmit}>
                         <div className="row g-3">
 

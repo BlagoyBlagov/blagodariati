@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import useForm from '../../hooks/useForm';
 import AuthContext from '../../contexts/authContext';
 
@@ -10,13 +10,17 @@ const LoginFormKeys = {
 export default function Login() {
 
     const { loginSubmitHandler } = useContext(AuthContext);
+    const [error, setError] = useState(null);
 
-    const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+    const { values, onChange, onSubmit } = useForm(async (formValues) => {
+        const error = await loginSubmitHandler(formValues);
+        if (error) {
+            setError(error);
+        }
+    }, {
         [LoginFormKeys.Email]: '',
         [LoginFormKeys.Password]: '',
     });
-
-    console.log(loginSubmitHandler);
 
     return (
             <>
@@ -27,6 +31,11 @@ export default function Login() {
 
             <div className="row g-5">
                 <div className="offset-md-2 col-md-7 col-lg-8">
+
+
+                    {error && <div className="alert alert-danger alert-dismissible fade show" role="alert">{error}</div>}
+
+
                     <form onSubmit={onSubmit}>
                         <div className="row g-3">
                             

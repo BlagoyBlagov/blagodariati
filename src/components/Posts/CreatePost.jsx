@@ -9,6 +9,7 @@ const createPost = () => {
     const navigate = useNavigate();
 
     const { isAuthenticated } = useContext(AuthContext);
+    const [error, setError] = useState(null);
     
     const formInitValues = {
         _needId: '',
@@ -28,17 +29,16 @@ const createPost = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        if(!formValues._needId || !formValues.description) {
-            console.log('Попълнете всички полета');
-            return;
-        }
-
         try {
+            if(!formValues._needId || !formValues.description) {
+                throw new Error('Попълнете всички полета');
+            }
             await postService.createPost(formValues);
             setFormValues(formInitValues)
             navigate('/');
         } catch(error) {
-            console.log(error);
+            setError(error.message);
+            // console.log(error.message);
         }
     }
 
@@ -57,6 +57,9 @@ const createPost = () => {
 
             <div className="row g-5">
                 <div className="offset-md-2 col-md-7 col-lg-8">
+
+                    {error && <div className="alert alert-danger alert-dismissible fade show" role="alert">{error}</div>}
+
                     <form onSubmit={onSubmit}>
                         <div className="row g-3">
 

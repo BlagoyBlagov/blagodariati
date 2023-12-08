@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import AuthContext from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
@@ -14,11 +14,18 @@ const RegisterFormKeys = {
     Password: 'password',
     ConfirmPassword: 'confirm-password',
 };
-
+ 
 const Register = () => {
 
     const { registerSubmitHandler } = useContext(AuthContext);
-    const { values, onChange, onSubmit } = useForm(registerSubmitHandler, {
+    const [error, setError] = useState(null);
+
+    const { values, onChange, onSubmit } = useForm(async (formValues) => {
+        const error = await registerSubmitHandler(formValues);
+        if (error) {
+            setError(error);
+        }
+    }, {
         [RegisterFormKeys.UserType]: '1',
         [RegisterFormKeys.FirstName]: '',
         [RegisterFormKeys.LastName]: '',
@@ -38,6 +45,9 @@ const Register = () => {
 
             <div className="row g-5">
                 <div className="offset-md-2 col-md-7 col-lg-8">
+
+                    {error && <div className="alert alert-danger alert-dismissible fade show" role="alert">{error}</div>}
+
                     <form onSubmit={onSubmit}>
                         <div className="row g-3">
 

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 import * as authService from '../services/authService';
 import usePersistedState from "../hooks/usePersistedState";
@@ -18,33 +18,45 @@ export const AuthProvider = ({
         try {
             const result = await authService.login(values);
             setAuth(result);
+            // Да изтрия паролите
             localStorage.setItem('accessToken', result.accessToken);
             navigate('/');
+            return null;
         } catch (error) {
-            console.log(error);
-            return error;
+            return error.message;
         }
-
     };
 
     const registerSubmitHandler = async (values) => {
         const userData = {
             ...values,
-            location: localStorage.getItem('locationData')
+            location: localStorage.getItem('locationData') ? localStorage.getItem('locationData') : {}
         };
-        const result = await authService.register(userData);
+
+        try {
+
+            if(!userData.firstName || !userData.lastName || !userData.email || !userData.password || !userData['confirm-password']) {
+                throw new Error('Моля попълнете полетата със "*"');
+            }
+            if(userData.password !== userData['confirm-password']) {
+                throw new Error('Паролите не съвпадат!');
+            }
+
+            const result = await authService.register(userData);
         
-        localStorage.removeItem('locationData');
+            const { password, 'confirm-password': confirmPassword, ...resultWithoutPasswords } = result;
+            setAuth(resultWithoutPasswords);
+            
+            localStorage.removeItem('locationData');
+            localStorage.setItem('accessToken', resultWithoutPasswords.accessToken);
+            await authService.registerUserData();
 
-        const { password, 'confirm-password': confirmPassword, ...resultWithoutPasswords } = result;
+            navigate('/');
+            return null;
+        } catch (error) {
+            return error.message;
+        }
 
-        setAuth(resultWithoutPasswords);
-        
-        localStorage.setItem('accessToken', resultWithoutPasswords.accessToken);
-        await authService.registerUserData();
-
-        console.log(resultWithoutPasswords);
-        navigate('/');
     };
 
     const logoutHandler = () => {
