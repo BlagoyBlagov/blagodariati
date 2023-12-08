@@ -33,22 +33,6 @@ const Details = () => {
 
     const userNames = post.owner ? post.owner.firstName + ' ' +post.owner.lastName : '';
 
-    const deleteButtonClickHandler = async () => {
-        await postService.deletePost(postId);
-        navigate('/');
-    }
-
-    // useEffect(() => {
-    //     if (post && post.postLikes) {
-    //       const liked = post.postLikes.some((like) => {
-    //         return like._ownerId === userId && like.postId === post._id;
-    //       });
-    
-    //       setHasLikedPost(liked);
-    //     }
-    // }, [post, userId]);
-
-
     useEffect(() => {
         getLikesByPost(postId)
         .then(result => {
@@ -58,18 +42,20 @@ const Details = () => {
             setLikeCounts(result.length);
             setHasLikedPost(liked);
         });
-    }, [post, userId, hasLikedPost, likeCounts])
+    }, [post, userId, hasLikedPost, likeCounts]);
+
 
     const likeClickHandler = async () => {
-        try {
-          await likePost({ postId });
-          setHasLikedPost(true);
-        } catch (error) {
-          console.error(error);
-        }
+       if(!hasLikedPost) {
+        await likePost({ postId });
+        setHasLikedPost(true);
+       }
     };
 
-    const postLikesCount = (post.postLikes ? post.postLikes.filter((like) => like.postId === postId) : []).length;
+    const deleteButtonClickHandler = async () => {
+        await postService.deletePost(postId);
+        navigate('/');
+    }
 
     return (
         <>
