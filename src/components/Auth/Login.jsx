@@ -16,6 +16,8 @@ export default function Login() {
         [LoginFormKeys.Password]: '',
     });
 
+    console.log(loginSubmitHandler);
+
     return (
             <>
             <div className="py-5 text-center">
@@ -44,7 +46,7 @@ export default function Login() {
                                 onChange={onChange}
                                 value={values[LoginFormKeys.Password]}
                                 />
-                            </div>
+                            </div> 
 
                         </div>
 

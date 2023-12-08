@@ -5,18 +5,19 @@ import styles from './styles/posts.module.css';
 
 const Home = () => {
 
-    const [needs, setNeeds] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     const postLimit = 4;
 
     useEffect(() => {
         needsListService.getAll(postLimit)
         .then(result => {
-            setNeeds(result);
+            setPosts(result);
             // console.log(result);
         })
         .catch(err => console.log(err));
     }, []);
+
 
     return (
         <>
@@ -29,23 +30,27 @@ const Home = () => {
             </div>
 
             <div className="row">
-                {needs
-                .map(need => (
+                {posts
+                .map(post => (
                     <NeedsList
-                        key={need._id}
-                        _id={need._id}
+                        key={post._id}
+                        _id={post._id}
 
-                        description={need.description}
-                        publishDate={need._createdOn}
+                        description={post.description}
+                        publishDate={post._createdOn}
 
-                        ownerId={need._ownerId}
-                        userNames={`${need.owner.firstName} ${need.owner.lastName}`}
-                        imageUrl={need.owner.imageUrl}
-                        location={need.owner.location}
+                        ownerId={post._ownerId}
+                        userNames={`${post.owner.firstName} ${post.owner.lastName}`}
+                        imageUrl={post.owner.imageUrl}
+                        location={post.owner.location}
 
-                        needId={need._needId}
+                        needId={post._needId}
                     />
                 ))}
+
+            {posts.length === 0 && (
+                <h2>Няма публикации</h2>
+            )}
             </div>
 
 

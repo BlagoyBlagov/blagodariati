@@ -10,6 +10,7 @@ const HeaderNav = () => {
     const {
         isAuthenticated,
         username,
+        userId,
     } = useContext(AuthContext);
 
     return (
@@ -34,7 +35,7 @@ const HeaderNav = () => {
 
                     {isAuthenticated && (
                         <ul className="navbar-nav mb-2 mb-lg-0">
-                            <li className="nav-item"><Link className="nav-link" to="/">{username}</Link></li>
+                            <li className="nav-item"><Link className="nav-link" to={`/profile/${userId}`}>{username}</Link></li>
                             <li className="nav-item"><Link className="nav-link" to="/logout">Изход</Link></li>
                         </ul>
                     )}
