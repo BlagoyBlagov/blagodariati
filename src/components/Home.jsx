@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import * as needsListService from "../services/needsListService";
-import NeedsList from './NeedsList';
+import NeedsList from './Posts/NeedsList';
 import styles from './styles/posts.module.css';
 
 const Home = () => {

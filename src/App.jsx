@@ -17,6 +17,7 @@ import CreatePost from "./components/Posts/CreatePost";
 import Details from "./components/Posts/Details";
 import EditPost from "./components/Posts/EditPost";
 import AllPosts from "./components/Posts/AllPosts";
+import PageNotFound from "./components/PageNotFound";
 
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
                         <Route path="/create" element={<CreatePost />} ></Route>
                         <Route path="/details/:postId" element={<Details />} ></Route>
                         <Route path="/details/:postId/edit" element={<EditPost />} ></Route>
+
+                        <Route path="/404" element={<PageNotFound />} ></Route>
+                        <Route path="*" element={<PageNotFound />} ></Route>
                     </Routes>
 
                 </main>

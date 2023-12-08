@@ -26,8 +26,7 @@ const Details = () => {
         postService.getOne(postId)
             .then(setPost)
             .catch((err) => {
-                navigate('/');
-                // redirect to 404
+                navigate('/404');
             });
     }, [postId]);
 

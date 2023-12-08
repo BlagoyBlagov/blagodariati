@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import styles from './styles/posts.module.css';
-import { formatTimestamp } from '../utils/formatTimestamp';
-import { needs } from '../staticDb/needs';
-import { truncateText } from '../utils/truncateText';
+import styles from '../styles/posts.module.css';
+import { formatTimestamp } from '../../utils/formatTimestamp';
+import { needs } from '../../staticDb/needs';
+import { truncateText } from '../../utils/truncateText';
 
 const NeedsList = ({
     _id,

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import * as needsListService from "../../services/needsListService";
-import NeedsList from '../NeedsList';
+import NeedsList from './NeedsList';
 import postsStyles from '../styles/posts.module.css';
 import searchBoxStyles from '../styles/searchBox.module.css';
 import { useNavigate } from "react-router-dom";
