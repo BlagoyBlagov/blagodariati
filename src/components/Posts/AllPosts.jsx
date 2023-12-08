@@ -1,19 +1,16 @@
 import { useState, useEffect } from "react";
-import * as needsListService from "../services/needsListService";
-import NeedsList from './NeedsList';
-import styles from './styles/posts.module.css';
+import * as needsListService from "../../services/needsListService";
+import NeedsList from '../NeedsList';
+import styles from '../styles/posts.module.css';
 
-const Home = () => {
+const AllPosts = () => {
 
     const [needs, setNeeds] = useState([]);
 
-    const postLimit = 4;
-
     useEffect(() => {
-        needsListService.getAll(postLimit)
+        needsListService.getAll()
         .then(result => {
             setNeeds(result);
-            // console.log(result);
         })
         .catch(err => console.log(err));
     }, []);
@@ -23,7 +20,7 @@ const Home = () => {
             <div className="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
                 <img className={`me-3 ${styles['heart-icon']}`} src="/images/icon-1.png" alt="" width="53" />
                 <div className="lh-1">
-                <h1 className="h6 mb-0 text-white lh-1">Последни {postLimit} публикации</h1>
+                <h1 className="h6 mb-0 text-white lh-1">Всички публикации</h1>
                 <small></small>
                 </div>
             </div>
@@ -53,4 +50,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default AllPosts;

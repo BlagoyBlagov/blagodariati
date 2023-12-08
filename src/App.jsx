@@ -16,6 +16,7 @@ import Logout from "./components/Auth/Logout";
 import CreatePost from "./components/Posts/CreatePost";
 import Details from "./components/Posts/Details";
 import EditPost from "./components/Posts/EditPost";
+import AllPosts from "./components/Posts/AllPosts";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                     
                     <Routes>
                         <Route path="/" element={<Home />} ></Route>
+                        <Route path="/all" element={<AllPosts />} ></Route>
 
                         <Route path="/register" element={<Register />} ></Route>
                         <Route path="/login" element={<Login />} ></Route>

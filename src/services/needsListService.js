@@ -1,23 +1,16 @@
 import * as request from '../lib/request';
 const baseUrl = 'http://localhost:3030/data/posts';
 
-export const getAll = async () => {
-    const query = new URLSearchParams({
-        load: `owner=_ownerId:users`,
-    });
-    const result = await request.get(`${baseUrl}?${query}`);
-    return result;
-}
 
-export const getLatest = async () => {
+export const getAll = async (limit) => {
     const query = new URLSearchParams({
         load: `owner=_ownerId:users`,
-        offset: 0,
-        pageSize: 10,
+        ...(limit ? { offset: 0, pageSize: limit } : {}),
     });
+
     const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc&${query}`);
     return result;
-}
+};
 
 export const getAllByUser = async (userId) => {
     const query = new URLSearchParams({

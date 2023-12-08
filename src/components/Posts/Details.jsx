@@ -41,6 +41,7 @@ const Details = () => {
         navigate('/');
     }
 
+
     return (
         <>
             <div className="row justify-content-center">
@@ -60,8 +61,14 @@ const Details = () => {
                             <div className={styles['badge']}> <span>{needs[post._needId]?.name || ''}</span> </div>
                         </div>
                         <div className="mt-3">
-                            <p>{post.description}</p>
-                        </div>
+                            {/* <p>{post.description}</p> */}
+                            {post.description && 
+                                post.description.split('\n')
+                                .filter(line => line.trim() !== '')
+                                .map((line, index, array) => (
+                                <p className="mb-1" key={index}>{line}</p>
+                            ))}
+                        </div>  
 
 
                         {userId === post._ownerId && (
