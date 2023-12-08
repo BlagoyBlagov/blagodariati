@@ -7,6 +7,10 @@
 
 ## Navigation
 
+### Test users
+- bla@abv.bg pass: 123456
+- ivan@abv.bg pass: 123456
+
 ### Home Page
 - Displays the latest 4 publications.
 
@@ -20,6 +24,7 @@
   - All Publications
   - Login/Registration
 
+- When registering, you can choose between 2 types of users (There are no different functionalities for now)
 - Google place autocomplete to record the location
 - Registered users have access to everything guests can see, plus they can like publications.
 
