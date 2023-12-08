@@ -3,7 +3,7 @@
 ## Структура на проекта
 
 - Проектът изисква, че папката "server" трябва да бъде разположена извън папката на проекта.
-- Използва се [@softuni-practice-server](SoftUni Practice Server)
+- Използва се [https://github.com/softuni-practice-server/softuni-practice-server]
 
 ## Навигация
 
