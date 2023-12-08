@@ -22,7 +22,7 @@ const editPost = () => {
         postService.getOne(postId)
         .then((post) => {
             if (userId !== post._ownerId) {
-              navigate('/');
+              navigate('/404');
             } else {
               setPost(post);
             }

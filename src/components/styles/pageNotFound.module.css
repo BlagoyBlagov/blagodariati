@@ -1,0 +1,17 @@
+.notfound-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 400px;
+    justify-content: center;
+}
+.notfound-box h1 {
+    font-size: 152px;
+    text-shadow: 3px 3px #8383da;
+}
+.notfound-box h3 {
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
