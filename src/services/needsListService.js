@@ -33,7 +33,7 @@ export const getAllByUser = async (userId) => {
 
 export const getOne = async (postId) => {
     const query = new URLSearchParams({
-        load: `owner=_ownerId:users`,
+        load: `owner=_ownerId:users,postLikes=postId:likes`,
     });
 
     const result = await request.get(`${baseUrl}/${postId}?${query}`);

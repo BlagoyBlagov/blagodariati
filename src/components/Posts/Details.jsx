@@ -9,8 +9,8 @@ import { needs } from '../../staticDb/needs';
 import styles from '../styles/posts.module.css';
 import { formatTimestamp } from '../../utils/formatTimestamp';
 import AuthContext from '../../contexts/authContext';
+import { likePost, getLikesByPost } from '../../services/likeService';
 
-const baseUrl = 'http://localhost:3030/data/posts';
 
 const Details = () => {
 
@@ -19,11 +19,8 @@ const Details = () => {
     const { userId, isAuthenticated } = useContext(AuthContext);
 
     const [post, setPost] = useState({});
-
-
-    const query = new URLSearchParams({
-        load: `owner=_ownerId:users`,
-    });
+    const [hasLikedPost, setHasLikedPost] = useState(false);
+    const [likeCounts, setLikeCounts] = useState(0);
 
     useEffect(() => {
         postService.getOne(postId)
@@ -41,6 +38,38 @@ const Details = () => {
         navigate('/');
     }
 
+    // useEffect(() => {
+    //     if (post && post.postLikes) {
+    //       const liked = post.postLikes.some((like) => {
+    //         return like._ownerId === userId && like.postId === post._id;
+    //       });
+    
+    //       setHasLikedPost(liked);
+    //     }
+    // }, [post, userId]);
+
+
+    useEffect(() => {
+        getLikesByPost(postId)
+        .then(result => {
+            const liked = result.some((like) => {
+                return like._ownerId === userId && like.postId === post._id;
+            });
+            setLikeCounts(result.length);
+            setHasLikedPost(liked);
+        });
+    }, [post, userId, hasLikedPost, likeCounts])
+
+    const likeClickHandler = async () => {
+        try {
+          await likePost({ postId });
+          setHasLikedPost(true);
+        } catch (error) {
+          console.error(error);
+        }
+    };
+
+    const postLikesCount = (post.postLikes ? post.postLikes.filter((like) => like.postId === postId) : []).length;
 
     return (
         <>
@@ -65,20 +94,31 @@ const Details = () => {
                             {post.description && 
                                 post.description.split('\n')
                                 .filter(line => line.trim() !== '')
-                                .map((line, index, array) => (
+                                .map((line, index) => (
                                 <p className="mb-1" key={index}>{line}</p>
                             ))}
                         </div>  
 
 
-                        {userId === post._ownerId && (
-                            <>
-                                <div className="mt-3">
-                                    <button className="btn btn-sm btn-secondary me-2">Харесай</button>
+                        <div className="mt-3">
+                            {isAuthenticated && (
+                                <>
+                                <button className="btn btn-link">{likeCounts} харесвания</button>
+                                <button 
+                                className={`btn btn-sm btn-${hasLikedPost ? 'success' : 'secondary'} me-2`} 
+                                onClick={likeClickHandler}>{hasLikedPost ? 'Харесано' : 'Харесай'}
+                                </button>
+                                </>
+                            )}
+                            {userId === post._ownerId && (
+                                <>
                                     <Link to={`/details/${post._id}/edit`} className="btn btn-sm btn-primary me-2">Редактирай</Link> 
                                     <button type="button" className="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deletePostModal">Изтрий</button>
-                                </div>
-
+                                </>
+                            )}
+                        </div>
+                
+                        {userId === post._ownerId && (
                                 <div className="modal fade" id="deletePostModal" tabIndex={-1} aria-labelledby="deletePostModal" aria-hidden="true">
                                     <div className="modal-dialog modal-dialog-centered">
                                         <div className="modal-content">
@@ -94,21 +134,7 @@ const Details = () => {
                                         </div>
                                     </div>
                                 </div>
-
-                            </>
                         )}
-
-                        {/* {isAuthenticated && (
-                            <>
-                            <div className="mt-3">
-                                <label htmlFor="description" className="form-label">Коментирай</label>
-                                <textarea className="form-control" 
-                                rows="3" 
-                                id="comment"
-                                name="comment"></textarea>
-                            </div>
-                            </>
-                        )} */}
                     </div>
                 </div>
             </div>
