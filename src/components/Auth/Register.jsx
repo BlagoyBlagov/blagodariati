@@ -4,6 +4,8 @@ import Autocomplete from "react-google-autocomplete";
 import AuthContext from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
 
+import styles from '../styles/auth.module.css';
+
 const RegisterFormKeys = {
     UserType: 'userType',
     FirstName: 'firstName',
@@ -52,12 +54,16 @@ const Register = () => {
             <div className="row g-5">
                 <div className="offset-md-2 col-md-7 col-lg-8">
 
+                    <div className="row g-3 justify-content-center">
+                        <img src="/images/002-register.png" className={styles['form-icon']} />
+                    </div>
+
                     {error && <div className="alert alert-danger alert-dismissible fade show" role="alert">{error}</div>}
 
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={onSubmit} className={styles['register-form']}>
                         <div className="row g-3">
 
-                            <div className="col-sm-12">
+                            <div className={`col-sm-12 ${styles['user-type']}`} >
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" type="radio" name={RegisterFormKeys.UserType} id="user_type_1" value="1" 
                                     onChange={onChange}

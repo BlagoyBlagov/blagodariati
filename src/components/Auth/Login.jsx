@@ -2,6 +2,8 @@ import { useContext, useState } from 'react';
 import useForm from '../../hooks/useForm';
 import AuthContext from '../../contexts/authContext';
 
+import styles from '../styles/auth.module.css';
+
 const LoginFormKeys = {
     Email: 'email',
     Password: 'password',
@@ -28,8 +30,16 @@ export default function Login() {
                 <h2>Вход</h2>
             </div>
 
-            <div className="row g-5">
-                <div className="offset-md-2 col-md-7 col-lg-8">
+            <div className="row g-5 justify-content-center">
+                
+                <div className="col-md-4">
+                    <div className={styles['form-left-box']}>
+                        <h3>Добре дошли отново!</h3>
+                        <img src="/images/001-login.png" />
+                    </div>
+                </div>
+
+                <div className="col-md-4">
 
 
                     {error && <div className="alert alert-danger alert-dismissible fade show" role="alert">{error}</div>}
@@ -38,7 +48,7 @@ export default function Login() {
                     <form onSubmit={onSubmit}>
                         <div className="row g-3">
                             
-                            <div className="col-6">
+                            <div className="col-12">
                                 <label htmlFor="email" className="form-label">Имейл адрес</label>
                                 <input type="email" className="form-control" id="email"
                                 name={LoginFormKeys.Email}
@@ -47,7 +57,7 @@ export default function Login() {
                                 />
                             </div>
 
-                            <div className="col-6">
+                            <div className="col-12">
                                 <label htmlFor="password" className="form-label">Парола</label>
                                 <input type="password" className="form-control" id="password"
                                 name={LoginFormKeys.Password}
