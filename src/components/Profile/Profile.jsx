@@ -73,7 +73,7 @@ const Profile = () => {
                             <img src={user?.imageUrl || '/images/User-avatar.png'} alt="" />
                         </div>
                         <div className={styles["user-info"]}>
-                            <small className='text-success'>потребител</small>
+                            <small className={`text-${user.userType == 1 ? 'success' : 'warning'}`}>{user.userType == 1 ? 'Потребител' : 'Човек в нужда'}</small>
                             <h3>{user.firstName} {user.lastName}</h3>
                             <span><i className="fa-solid fa-location-dot"></i> {userLocation}</span>
                         </div>

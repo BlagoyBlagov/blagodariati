@@ -17,33 +17,4 @@ export const registerUserData = async () => {
 };
 
 
-// export const register = async (data) => {
-    // try {
-    //     const response = await fetch(`${baseUrl}/register`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(data),
-    //     });
-    //     if(response.status === 200) {
-    //         const result = await response.json();
-    //         const token = result.accessToken;
-            
-    //         await fetch(`${baseUrl}/data/userData`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'X-Authorization': token,
-    //             },
-    //             body: JSON.stringify({in: ''}),
-    //         });
-    //     }
-        
-    // } catch(error) {
-    //     // console.log(error);
-    // }
-    
-// };
-
 export const logout = () => request.get(`${baseUrl}/logout`);
